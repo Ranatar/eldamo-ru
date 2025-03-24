@@ -335,26 +335,26 @@ li ul li {{list-style-type:none}}
 <div id="nav-block" class="nav-block">
 <span class="hierarchy-nav">
 <span class="breadcrumb-nav">
-    [<a href="../../index.html">Home</a>] »
-    <a href="../languages/index.html">Languages</a> »
+    [<a href="../../index.html">На главную страницу</a>] »
+    <a href="../languages/index.html">Языки</a> »
     <a href="../language-pages/lang-{$l}.html">{$lang}</a> »&#160;
 </span>
 {
 if (ends-with(c:get-speech($words[1]), '-name')) then    
-    <a href="../name-indexes/names-{$l}.html">{$lang} Names</a>
+    <a href="../name-indexes/names-{$l}.html">{$lang}: Имена</a>
 else if (c:get-speech($words[1]) = 'phrase' or c:get-speech($words[1]) = 'text') then    
-    <a href="../phrase-indexes/phrases-{$l}.html">{$lang} Phrases</a>
+    <a href="../phrase-indexes/phrases-{$l}.html">{$lang}: Фразы</a>
 else if (c:get-speech($words[1]) = 'grammar') then    
-    <a href="../grammar-indexes/grammars-{$l}.html">{$lang} Grammar</a>
+    <a href="../grammar-indexes/grammars-{$l}.html">{$lang}: Граматика</a>
 else if (c:get-speech($words[1]) = 'root') then    
-    <a href="../root-indexes/roots-{$l}.html">{$lang} Roots</a>
+    <a href="../root-indexes/roots-{$l}.html">{$lang}: Корни</a>
 else if (starts-with(c:get-speech($words[1]), 'phone')) then    
-    <a href="../phonetic-indexes/phonetics-{$l}.html">{$lang} Phonetics</a>
+    <a href="../phonetic-indexes/phonetics-{$l}.html">{$lang}: Фонетика</a>
 else
-    <a href="../word-indexes/words-{$l}.html">{$lang} Words</a>
+    <a href="../word-indexes/words-{$l}.html">{$lang}: Слова</a>
 }
 </span>
-<span class="search-nav-link">[<a href="../search/search.html">Search</a>]</span>
+<span class="search-nav-link">[<a href="../search/search.html">Поиск</a>]</span>
 <hr class="nav-break"/>
 <span class="list-nav"> {
 let $lang := $words[1]/ancestor-or-self::*[@l][1]/@l/string()
@@ -402,12 +402,12 @@ return (
         [↑{c:print-word($parent, <print-word show-lang="y" show-link="y"/>)}]
     </span>,
     if ($preceding-word) then <span class="previous-nav-link">
-        [<a href="{c:to-word-link($preceding-word)}">← Previous</a>]
+        [<a href="{c:to-word-link($preceding-word)}">← Предыдущее</a>]
     </span> else (),
     <span class="next-nav-link">{ if ($following-word) then
-        ('[', <a href="{c:to-word-link($following-word)}">Next →</a>, ']')
+        ('[', <a href="{c:to-word-link($following-word)}">Следующее →</a>, ']')
     else ('&#160;') }</span>,
-    <span class="search-nav-link2">[<a href="../search/search.html">Search</a>]</span>
+    <span class="search-nav-link2">[<a href="../search/search.html">Поиск</a>]</span>
 ) }
 </span>
 </div>
@@ -420,23 +420,23 @@ if (not($neo-lang) or not($allow-neo-nav)) then () else (
 <div id="neo-nav-block" class="neo-nav-block">
 <span class="hierarchy-nav">
 <span class="breadcrumb-nav">
-    [<a href="../../index.html">Home</a>] »
-    <a href="../languages/index.html">Languages</a> »
+    [<a href="../../index.html">На главную страницу</a>] »
+    <a href="../languages/index.html">Языки</a> »
     <a href="../language-pages/lang-{$neo-lang/@id/string()}.html">{$lang}</a> »&#160;
 </span>
 {
 if (ends-with(c:get-speech($words[1]), '-name')) then    
-    <a href="../name-indexes/names-{$l}.html">{$lang} Names</a>
+    <a href="../name-indexes/names-{$l}.html">{$lang}: Имена</a>
 else if (c:get-speech($words[1]) = 'phrase' or c:get-speech($words[1]) = 'text') then    
-    <a href="../phrase-indexes/phrases-{$l}.html">{$lang} Phrases</a>
+    <a href="../phrase-indexes/phrases-{$l}.html">{$lang}: Фразы</a>
 else if (c:get-speech($words[1]) = 'grammar') then    
-    <a href="../grammar-indexes/grammars-{$l}.html">{$lang} Grammar</a>
+    <a href="../grammar-indexes/grammars-{$l}.html">{$lang}: Грамматика</a>
 else if (c:get-speech($words[1]) = 'root') then    
-    <a href="../root-indexes/roots-{$l}.html">{$lang} Roots</a>
+    <a href="../root-indexes/roots-{$l}.html">{$lang}: Корни</a>
 else if (starts-with(c:get-speech($words[1]), 'phone')) then    
-    <a href="../phonetic-indexes/phonetics-{$l}.html">{$lang} Phonetics</a>
+    <a href="../phonetic-indexes/phonetics-{$l}.html">{$lang}: Фонетика</a>
 else
-    <a href="../word-indexes/words-{$l}.html">{$lang} Words</a>
+    <a href="../word-indexes/words-{$l}.html">{$lang}: Слова</a>
 }
 </span>
 <span class="search-nav-link">[<a href="../search/search.html">Search</a>]</span>
@@ -482,12 +482,12 @@ let $preceding-word := $match-in-word-set/preceding-sibling::*[1]
 let $following-word := $match-in-word-set/following-sibling::*[1]
 return (
     if ($preceding-word) then <span class="previous-nav-link">
-        [<a href="{c:to-word-link($preceding-word)}">← Previous</a>]
+        [<a href="{c:to-word-link($preceding-word)}">← Предыдущее</a>]
     </span> else (),
     <span class="next-nav-link">{ if ($following-word) then
-        ('[', <a href="{c:to-word-link($following-word)}">Next →</a>, ']')
+        ('[', <a href="{c:to-word-link($following-word)}">Следующее →</a>, ']')
     else ('&#160;') }</span>,
-    <span class="search-nav-link2">[<a href="../search/search.html">Search</a>]</span>
+    <span class="search-nav-link2">[<a href="../search/search.html">Поиск</a>]</span>
 ) }
 </span>
 </div>
@@ -525,7 +525,7 @@ return (
         then (' see ', c:print-word(c:get-word($word/see)[1], <print-word style="bold" show-lang="y" show-link="y"/>))
         else ()}
     {if ($word/@cat and not($word/see))
-        then (' (Category: ', <a href="../category-indexes/categories-{c:get-lang($word)}.html#{$word/@cat/string()}">
+        then (' (Категория: ', <a href="../category-indexes/categories-{c:get-lang($word)}.html#{$word/@cat/string()}">
         {xdb:key(., 'cat-def', $word/@cat)/@label/string()}</a>, ')')
         else ()}
     {if ($pubmode = 'false' and $word/combine) then ' [combine^^]' else ()}
@@ -544,7 +544,7 @@ if (xdb:hashcode($neo-lang-word) != xdb:hashcode($word)) then (
     { let $deprecated := $word/deprecated | c:get-word($word/see)/deprecated return
       if (
         $deprecated or
-        ($word/@gloss='[unglossed]' and not($word/@ngloss)) or
+        ($word/@gloss='[толкование отсутствует]' and not($word/@ngloss)) or
         contains($word/@mark, '-') or
         contains($word/@mark, '|') or
         contains($word/@mark, '‽') or
@@ -598,9 +598,9 @@ if (xdb:hashcode($neo-lang-word) != xdb:hashcode($word)) then (
     {c:print-neo-gloss($word)}
     { if (not($word/@created or $word/@vetted)) then () else
       concat(' [',
-        if ($word/@created) then concat('created by ', $word/@created/string()) else '',
+        if ($word/@created) then concat('предложил(а) ', $word/@created/string()) else '',
         if ($word/@created and $word/@vetted) then ', ' else '',
-        if ($word/@vetted) then concat('vetted by ', $word/@vetted/string()) else '',
+        if ($word/@vetted) then concat('утвердил(а) ', $word/@vetted/string()) else '',
       ']') }
     {let $rule := if ($word/@rule) then $word else $word/rule return
     if ($rule) then concat('; [', $rule/@from, '] &gt; [', $rule/@rule, ']') else ()}
@@ -609,7 +609,7 @@ if (xdb:hashcode($neo-lang-word) != xdb:hashcode($word)) then (
         then (' see ', c:print-word(c:get-word($word/see), <print-word style="bold" show-lang="y" show-link="y" normalize="{$normalize}"/>))
         else ()}
     {if ($word/@cat and not($word/see))
-        then (' (Category: ', <a href="../category-indexes/categories-{c:get-neo-lang-with-fallback($word)}.html?neo#{$word/@cat/string()}">
+        then (' (Категория: ', <a href="../category-indexes/categories-{c:get-neo-lang-with-fallback($word)}.html?neo#{$word/@cat/string()}">
         {xdb:key(., 'cat-def', $word/@cat)/@label/string()}</a>, ')')
         else ()}
     {if ($pubmode = 'false' and $word/combine) then ' [combine^^]' else ()}
@@ -638,11 +638,11 @@ return if (not($texts-in)) then () else
             return
             <p>
                 {if (not($previous-phrase)) then () else ('[&lt; ', 
-                    <a href='word-{xdb:hashcode(c:get-word($previous-phrase))}.html'>Previous Phrase</a>,
+                    <a href='word-{xdb:hashcode(c:get-word($previous-phrase))}.html'>Предыдущая фраза</a>,
                 '] ')}
                 {c:print-word($text-in, <print-word style="italic" show-link="y"/>)}
                 {if (not($next-phrase)) then () else (' [', 
-                    <a href='word-{xdb:hashcode(c:get-word($next-phrase))}.html'>Next Phrase</a>,
+                    <a href='word-{xdb:hashcode(c:get-word($next-phrase))}.html'>Следующая фраза</a>,
                 ' &gt;]')}
             </p>,
             <hr/>
@@ -651,8 +651,8 @@ return if (not($texts-in)) then () else
 
 if ($word/see-notes) then 
    <div class="notes">
-       See {c:print-word(c:get-word($word/see-notes), 
-       <print-word style="italic" show-lang="y" show-link="y"/>)} for discussion.
+       Подробнее см. {c:print-word(c:get-word($word/see-notes), 
+       <print-word style="italic" show-lang="y" show-link="y"/>)}.
    </div>
 else (),
 
@@ -664,11 +664,11 @@ then
     <div class="notes">
         {xdb:html($note/node())}
         {if ($see-further) then (
-            <p>See {c:print-word(c:get-word($see-further), 
-            <print-word style="italic" show-lang="y" show-link="y"/>)} for further discussion.</p>
+            <p>См. {c:print-word(c:get-word($see-further), 
+            <print-word style="italic" show-lang="y" show-link="y"/>)} с подробным описанием.</p>
         ) else ()}
         {if ($see-also) then (
-            <p>See also {c:print-word($see-also, 
+            <p>См. также {c:print-word($see-also, 
             <print-word style="italic" show-lang="y" show-link="y"/>)} {c:print-gloss($see-also)}.</p>
         ) else ()}
     </div>
@@ -679,7 +679,7 @@ let $inflect-display :=
     else <print-word show-link="parent"/>
 for $form in if ($note/form) then $note/form/@form else $note/@form
 return (
-<tr><th colspan="10">Examples ({string($form)})</th></tr>,
+<tr><th colspan="10">Примеры ({string($form)})</th></tr>,
 let $key := $note/@key/string()
 let $speech := $note/@speech/string()
 let $exclude := $form/../@exclude
@@ -737,7 +737,7 @@ return
 if (count($valid-refs) = 1 and count($valid-refs[not(inflect) or c:is-root($word)]) = 1) then (
 let $ref := $valid-refs[1] return
 <p>
-    <u>Reference</u>
+    <u>Источник</u>
     {if ($pubmode = 'true') then
         (' ✧ ', c:short-ref($ref/@source))
         else local:print-ref-set($ref, <ref-set short-mode="{$pubmode}"/>)}
@@ -760,7 +760,7 @@ let $short-refs := distinct-values($base-refs/@source/c:short-ref(.))
 return
 if ($base-refs) then (
 <p>
-    <u>References</u>
+    <u>Источники</u>
     {if ($pubmode = 'true' or count($short-refs) lt count($base-refs))
      then (' ✧ ', 
         let $normalized-short-refs := <div> {
@@ -794,7 +794,7 @@ if ($base-refs) then (
 let $gloss-refs := $valid-refs[not(inflect) or c:is-root($word)][not(correction)][@gloss] return
 if ($gloss-refs) then (
     (: [@gloss != c:get-gloss($word)]; TODO - Mark deletions :)
-    <p><u>Glosses</u></p>,
+    <p><u>Толкования</u></p>,
     <ul> {
     let $glosses := distinct-values($gloss-refs/@gloss/lower-case(.))
     for $gloss in $glosses
@@ -815,7 +815,7 @@ let $variation-refs := $base-variation-refs[not(local:is-match(@v, $word/@v))]
 let $non-variation-refs := $base-variation-refs[local:is-match(@v, $word/@v)]
 return
 if ($variation-refs or $non-variation-refs[@l] or ($base-variation-refs and $valid-refs[inflect])) then (
-<p><u>Variations</u> {if ($pubmode = 'false' and $word/word/see)
+<p><u>Варианты</u> {if ($pubmode = 'false' and $word/word/see)
 then concat(' [also ', string-join($word/word[see]/@v, ', '), ']')
 else ()}</p>,
 <ul> { (
@@ -830,7 +830,7 @@ else ()}</p>,
 (: Notes :)
 let $note-refs := $valid-refs[notes or example] return
 if ($note-refs and $pubmode != 'true') then (
-    <p><u>Notes</u></p>,
+    <p><u>Примечания</u></p>,
     <ul> {
     for $ref in $note-refs return
     <li>
@@ -859,7 +859,7 @@ let $before-print := (
     order by $ref/@l, c:normalize-for-sort($ref/@order)
     return
         <tr>
-            <td> { if (($ref/@order gt $word/@order) and ($ref/@l = $word/@l)) then '[ERROR] ' else () } After</td>
+            <td> { if (($ref/@order gt $word/@order) and ($ref/@l = $word/@l)) then '[ERROR] ' else () } После</td>
             <td> { $ref/@order/string() } </td>
             <td> { c:print-word($ref, $control) } </td>
             <td align="center"> { 
@@ -894,7 +894,7 @@ let $before-print := (
     order by $before/@l, c:normalize-for-sort($before/@order)
     return
         <tr>
-            <td> { if (($before/@order lt $word/@order and ($before/@l = $word/@l))) then '[ERROR] ' else if (count($all-before) != 1) then '[ERROR:MISLINK] ' else () } Before</td>
+            <td> { if (($before/@order lt $word/@order and ($before/@l = $word/@l))) then '[ERROR] ' else if (count($all-before) != 1) then '[ERROR:MISLINK] ' else () } Перед</td>
             <td> { $before/@order/string() } </td>
             <td> { c:print-word($before, $control) } </td>
             <td align="center"> { 
@@ -919,7 +919,7 @@ let $before-print := (
 )
 return
 if ($before-print/string() != '') then (
-    <p><u>Order ({$word/@order/string()})</u></p>,
+    <p><u>Порядок ({$word/@order/string()})</u></p>,
     $before-print
 ) else (),
 
@@ -995,7 +995,7 @@ let $related-print := (
 )
 return
 if ($related-print/string() != '') then (
-    <p><u>Related</u></p>,
+    <p><u>Смежные слова</u></p>,
     $related-print
 ) else (),
 
@@ -1006,7 +1006,7 @@ let $change-refs := $valid-refs[
                     ]
 return
 if ($change-refs) then (
-    <p><u>Changes</u></p>,
+    <p><u>Изменения</u></p>,
     <ul> {
     let $change-sigs := distinct-values($change-refs[change]/local:change-sig(., 'change'))
     let $correction-sigs := distinct-values($change-refs[correction]/local:change-sig(., 'correction'))
@@ -1041,7 +1041,7 @@ if ($change-refs) then (
 (: Inflections :)
 let $inflect-refs := $valid-refs[inflect[not(@source) or c:get-ref(.)]] return
 if ($inflect-refs) then (
-    <p><u>Inflections</u></p>,
+    <p><u>Словоизменение</u></p>,
     <table> {
     let $has-glosses := $inflect-refs/@gloss
     let $has-variants := $inflect-refs/inflect/@variant
@@ -1075,7 +1075,7 @@ if ($inflect-refs) then (
 
 (: Elements :)
 if (not($word/element) and count($word/ref[element]) = 1) then (
-<p><u>Elements</u></p>,
+<p><u>Морфемы</u></p>,
 <table> {
 let $has-forms := $word/ref/element[@form] | $word/ref/element/c:get-ref(.)/inflect/@form
 for $element-ref in $word/ref/element
@@ -1157,7 +1157,7 @@ return (
 (: Element In :)
 let $print-element-in := local:print-element-in($word, $pubmode) return
 if ($print-element-in != '' and not(c:is-root($word))) then (
-    <p><u>Element In</u></p>,
+    <p><u>Производные</u></p>,
     local:print-element-in($word, $pubmode)
 ) else (),
 
@@ -1168,7 +1168,7 @@ let $neo-only := not($cognates[not(c:is-neo(.))])
 return if (not($cognates)) then () else (
     <p>
         { if ($neo-only) then attribute class {'neo'} else () }
-        <u>Cognates</u>
+        <u>Родственные слова</u>
     </p>,
     <ul> {
         for $cognate in $cognates
@@ -1189,7 +1189,7 @@ return if (not($cognates)) then () else (
 (: Derivations :)
 let $deriv-refs := if (c:get-speech($word) != 'phoneme') then $valid-refs/deriv[c:get-ref(.)] else ()
 let $derivs := $deriv-refs/c:get-ref(.)/.. | $word/deriv/c:get-word(.)
-return if ($derivs) then <p><u>Derivations</u></p> else (),
+return if ($derivs) then <p><u>Этимология</u></p> else (),
 <ul>{if (c:get-speech($word) != 'phoneme') then local:print-derivations($word, (), $pubmode) else ()}</ul>,
 
 (: Derivatives :)
@@ -1198,7 +1198,7 @@ local:print-derivatives($word, $pubmode),
 (: Phonetic Rule Developments :)
 let $phonetic-rule-refs := $valid-refs[deriv/rule-example | deriv/rule-start] return
 if ($phonetic-rule-refs) then (
-    <p><u>Phonetic Developments</u></p>,
+    <p><u>Фонетическое развитие</u></p>,
     <table> {
     for $phonetic-rule-ref in $phonetic-rule-refs
     let $ref := $phonetic-rule-ref/c:get-ref(.)
@@ -1235,7 +1235,7 @@ let $to-rule-refs := $valid-refs/xdb:key(., 'rule-to-ref', @source)
 let $rule-refs := $from-rule-refs | $to-rule-refs
 return
 if ($rule-refs) then (
-    <p><u>Phonetic Development</u></p>,
+    <p><u>Фонетическое развитие</u></p>,
     <table> { (
     for $rule in distinct-values($from-rule-refs[not(@from)]/@rule/string())
     let $refs := $from-rule-refs[not(@from)][@rule = $rule]
@@ -1285,7 +1285,7 @@ if ($rule-refs) then (
 (: Rule Elements :)
 let $rule-element-refs := $word/rule return
 if ($rule-element-refs) then (
-    <p><u>Phonetic Rule Elements</u></p>,
+    <p><u>Фонетические переходы</u></p>,
     <table> {
     for $rule-element in $word/rule
     let $from := $rule-element/@from
@@ -1312,7 +1312,7 @@ let $rule-example-refs := xdb:key($word, 'rule-example-ref', concat(c:get-lang($
     $word/rule/xdb:key($word, 'rule-example-ref2', concat(@l, ':', @rule, ':', @from))
 return
 if ($rule-example-refs) then (
-<p><u>Phonetic Rule Examples</u></p>,
+<p><u>Примеры фонетических переходов</u></p>,
 <table> {
 for $ref in $rule-example-refs
 let $deriv := $ref/parent::deriv
@@ -1342,7 +1342,7 @@ return
 ,
 let $applied-phonetic-rules := $word/ref/deriv/rule-example[xdb:key(., 'lang-word', concat(@l, ':', @v))] return
 if ($applied-phonetic-rules) then (
-<p><u>Applied Derivational Rules</u></p>,
+<p><u>Правила словообразования</u></p>,
 <ul> {
 for $ref in $applied-phonetic-rules return
 <li>
