@@ -606,7 +606,7 @@ if (xdb:hashcode($neo-lang-word) != xdb:hashcode($word)) then (
     if ($rule) then concat('; [', $rule/@from, '] &gt; [', $rule/@rule, ']') else ()}
     { let $normalize := $l = ('q', 'nq', 'mq', 'eq') return
       if ($word/see and not ($word/deprecated))
-        then (' see ', c:print-word(c:get-word($word/see), <print-word style="bold" show-lang="y" show-link="y" normalize="{$normalize}"/>))
+        then (' см. ', c:print-word(c:get-word($word/see), <print-word style="bold" show-lang="y" show-link="y" normalize="{$normalize}"/>))
         else ()}
     {if ($word/@cat and not($word/see))
         then (' (Категория: ', <a href="../category-indexes/categories-{c:get-neo-lang-with-fallback($word)}.html?neo#{$word/@cat/string()}">
@@ -815,7 +815,7 @@ let $variation-refs := $base-variation-refs[not(local:is-match(@v, $word/@v))]
 let $non-variation-refs := $base-variation-refs[local:is-match(@v, $word/@v)]
 return
 if ($variation-refs or $non-variation-refs[@l] or ($base-variation-refs and $valid-refs[inflect])) then (
-<p><u>Варианты</u> {if ($pubmode = 'false' and $word/word/see)
+<p><u>Вариантные формы</u> {if ($pubmode = 'false' and $word/word/see)
 then concat(' [also ', string-join($word/word[see]/@v, ', '), ']')
 else ()}</p>,
 <ul> { (
@@ -995,7 +995,7 @@ let $related-print := (
 )
 return
 if ($related-print/string() != '') then (
-    <p><u>Смежные слова</u></p>,
+    <p><u>Смежные статьи</u></p>,
     $related-print
 ) else (),
 
@@ -1006,7 +1006,7 @@ let $change-refs := $valid-refs[
                     ]
 return
 if ($change-refs) then (
-    <p><u>Изменения</u></p>,
+    <p><u>Корректировки</u></p>,
     <ul> {
     let $change-sigs := distinct-values($change-refs[change]/local:change-sig(., 'change'))
     let $correction-sigs := distinct-values($change-refs[correction]/local:change-sig(., 'correction'))
@@ -1041,7 +1041,7 @@ if ($change-refs) then (
 (: Inflections :)
 let $inflect-refs := $valid-refs[inflect[not(@source) or c:get-ref(.)]] return
 if ($inflect-refs) then (
-    <p><u>Словоизменение</u></p>,
+    <p><u>Грамматические формы</u></p>,
     <table> {
     let $has-glosses := $inflect-refs/@gloss
     let $has-variants := $inflect-refs/inflect/@variant
@@ -1075,7 +1075,7 @@ if ($inflect-refs) then (
 
 (: Elements :)
 if (not($word/element) and count($word/ref[element]) = 1) then (
-<p><u>Морфемы</u></p>,
+<p><u>Состав</u></p>,
 <table> {
 let $has-forms := $word/ref/element[@form] | $word/ref/element/c:get-ref(.)/inflect/@form
 for $element-ref in $word/ref/element
@@ -1157,7 +1157,7 @@ return (
 (: Element In :)
 let $print-element-in := local:print-element-in($word, $pubmode) return
 if ($print-element-in != '' and not(c:is-root($word))) then (
-    <p><u>Производные</u></p>,
+    <p><u>В составе</u></p>,
     local:print-element-in($word, $pubmode)
 ) else (),
 
@@ -1235,7 +1235,7 @@ let $to-rule-refs := $valid-refs/xdb:key(., 'rule-to-ref', @source)
 let $rule-refs := $from-rule-refs | $to-rule-refs
 return
 if ($rule-refs) then (
-    <p><u>Фонетическое развитие</u></p>,
+    <p><u>Фонетические правила</u></p>,
     <table> { (
     for $rule in distinct-values($from-rule-refs[not(@from)]/@rule/string())
     let $refs := $from-rule-refs[not(@from)][@rule = $rule]
