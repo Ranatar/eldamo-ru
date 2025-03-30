@@ -2,13 +2,13 @@ import module namespace c = "common.xq" at "common.xq";
 
 declare function local:lang-name($lang as element()) as xs:string {
     if ($lang/@id = 'q') then (
-        concat('Late ', $lang/@name/string(), ' (1950-73)')
+        concat('Поздний ', $lang/@name/string(), ' (1950-73)')
     ) else if ($lang/@id = ('s', 'p')) then (
         concat($lang/@name/string(), ' (1950-73)')
     ) else if ($lang/@id = ('mq', 'n')) then (
         concat($lang/@name/string(), ' (1930-50)')
     ) else if ($lang/@id = 'mp') then (
-        'Middle Primitive (1930-50)'
+        'Средний пра-эльфийский (1930-50)'
     ) else if ($lang/@id = 'eq') then (
         concat($lang/@name/string(), ' (1910-30)')
     ) else if ($lang/@id = 'g') then (
@@ -16,7 +16,7 @@ declare function local:lang-name($lang as element()) as xs:string {
     ) else if ($lang/@id = 'en') then (
         concat($lang/@name/string(), ' (1920-30)')
     ) else if ($lang/@id = 'ep') then (
-        'Early Primitive (1910-30)'
+        'Ранний пра-эльфийский (1910-30)'
     ) else (
         $lang/@name/string()
     )
@@ -53,7 +53,7 @@ declare function local:lang-order($lang as xs:string) as xs:string {
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta><meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"></meta>
     <meta http-equiv="Content-Style-Type" content="text/css"></meta>
-    <title>Eldamo : Search</title>
+    <title>Eldamo : Поиск</title>
     <link rel="stylesheet" type="text/css" href="../../css/global.css"></link>
     <style>
 
@@ -82,31 +82,31 @@ button {{ border-radius: 4px; background-color: #EEE; border: 1px solid #444 }}
 <body onload="initSearch()">
 <div class="search-header">
     <span class="label-holder">
-        <big>[<a href="../../index.html">Home</a>]</big>
+        <big>[<a href="../../index.html"> На главную страницу</a>]</big>
     </span>
     <span class="button-holder">
         <button id="advancedButton" class="advancedButton" onclick="advanced()">...</button>
     </span>
     <span class="search-holder">
-        <input type="text" id="searchBox" class="searchBox" value="" onfocus="hideHelp()" onkeyup="doSearchTyping()" placeholder="Search..." />
+        <input type="text" id="searchBox" class="searchBox" value="" onfocus="hideHelp()" onkeyup="doSearchTyping()" placeholder="Поиск..." />
     </span>
 </div>
 <div class="search-selectors" id="search-selectors">
     <button id="helpButton" class="helpButton" onclick="help()">?</button> &#160;
     <select id="langSelect" class="langSelect" onfocus="hideHelp()" onchange="doSearch()">
-        <option value="">All Languages</option>
+        <option value="">Все языки</option>
         <option value="" disabled="disabled">─────────────</option>
-        <option value="eq|mq|q|nq">All Quenya</option>
-        <option value="g|n|en|s|ns">Sindarin/Noldorin/Gnomish</option>
-        <option value="p|mp|ep|np">All Primitive Elvish</option>
+        <option value="eq|mq|q|nq">Ранний/Средний/Поздний квэнья</option>
+        <option value="g|n|en|s|ns">Синдарин/Нолдорин/Номский</option>
+        <option value="p|mp|ep|np">Ранний/Средний/Поздний пра-эльфийский</option>
         <option value="" disabled="disabled">─────────────</option>
-        <option value="mq|q|nq">Later Quenya (1930+)</option>
-        <option value="n|s|ns">Sindarin/Noldorin (1930+)</option>
-        <option value="mp|p|np">Later Primitive (1930+)</option>
+        <option value="mq|q|nq">Поздний квэнья (1930+)</option>
+        <option value="n|s|ns">Синдарин/Нолдорин (1930+)</option>
+        <option value="mp|p|np">Поздний пра-эльфийский (1930+)</option>
         <option value="" disabled="disabled">─────────────</option>
-        <option value="q|aq|van|s|os|p|t|at|nan|norths|av">All Late Elvish (1950-73)</option>
-        <option value="mq|maq|lin|n|on|mp|mt|ilk|dan|lem">All Middle Elvish (1930-50)</option>
-        <option value="eq|en|g|et|ep">All Early Elvish (1910-30)</option>
+        <option value="q|aq|van|s|os|p|t|at|nan|norths|av">Все поздние эльфийские языки (1950-73)</option>
+        <option value="mq|maq|lin|n|on|mp|mt|ilk|dan|lem">Все средние эльфийские языки (1930-50)</option>
+        <option value="eq|en|g|et|ep">Все ранние эльфийские языки (1910-30)</option>
         <option value="" disabled="disabled">─────────────</option> {
             for $lang in //language[@id][not(@id=('np', 'ns', 'nq'))]
             order by local:lang-order($lang/@id)
@@ -120,35 +120,35 @@ button {{ border-radius: 4px; background-color: #EEE; border: 1px solid #444 }}
        }
     </select> &#160;
     <select id="targetSelect" onfocus="hideHelp()" onchange="doSearch()">
-        <option value="word-and-gloss">word &amp; gloss</option>
-        <option value="word-only">word only</option>
-        <option value="gloss-only">gloss only</option>
+        <option value="word-and-gloss">слово &amp; толкование</option>
+        <option value="word-only">только слово</option>
+        <option value="gloss-only">только толкование</option>
     </select> &#160;
     <select id="positionSelect" onfocus="hideHelp()" onchange="doSearch()">
-        <option value="anywhere">any match</option>
-        <option value="start">start only</option>
-        <option value="end">end only</option>
-        <option value="interior">interior only</option>
+        <option value="anywhere">любая позиция</option>
+        <option value="start">только в начале</option>
+        <option value="end">только в конце</option>
+        <option value="interior">только в середине</option>
     </select> &#160;
     <select id="partsOfSpeechSelect" onfocus="hideHelp()" onchange="doSearch()">
-        <option value="">parts of speech</option>
+        <option value="">части речи</option>
         <option value="" disabled="disabled">──────</option>
-        <option value="no-names">exclude names</option>
-        <option value="only-names">only names</option>
+        <option value="no-names">исключая имена</option>
+        <option value="only-names">только имена</option>
         <option value="" disabled="disabled">──────</option>
-        <option value="n">noun</option>
-        <option value="vb">verb</option>
-        <option value="adj">adjective</option>
-        <option value="adv">adverb</option>
-        <option value="pron">pronoun</option>
-        <option value="prep">preposition</option>
-        <option value="conj">conjunction</option>
-        <option value="interj">interjection</option>
-        <option value="pref">prefix</option>
-        <option value="suf">suffix</option>
-        <option value="root">root</option>
+        <option value="n">существительное</option>
+        <option value="vb">глагол</option>
+        <option value="adj">прилагательное</option>
+        <option value="adv">наречие</option>
+        <option value="pron">местоимение</option>
+        <option value="prep">предлог</option>
+        <option value="conj">союз</option>
+        <option value="interj">междометие</option>
+        <option value="pref">приставка</option>
+        <option value="suf">суффикс</option>
+        <option value="root">корень</option>
     </select> &#160;
-    <button id="resetButton" onclick="reset()">Reset</button>
+    <button id="resetButton" onclick="reset()">Обнулить</button>
 </div>
 <div class="neo-warning-div" id="neo-warning-div">
 This search mixes words from various periods of Tolkien’s life, as well as

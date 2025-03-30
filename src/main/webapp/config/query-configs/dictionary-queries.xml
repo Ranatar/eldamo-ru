@@ -8,7 +8,7 @@
         <renderers>
             <xsl-renderer content-type="xml" mime-type="text/xml" file="data-model.xsl"/>
         </renderers>
-        <description>The data model.</description>
+        <description>Модель данных.</description>
         <example><![CDATA[data-model.xml]]></example>
     </query-controller>
     <query-controller uri-pattern="/test/test.*">
@@ -64,7 +64,7 @@
         <renderers>
             <xsl-renderer content-type="xml" mime-type="text/xml" file="sort.xsl"/>
         </renderers>
-        <description>A sorted data set.</description>
+        <description>Упорядоченный набор данных.</description>
         <example><![CDATA[sort.xml]]></example>
     </query-controller>
     <query-controller uri-pattern="/sort-merge.*">
@@ -75,7 +75,7 @@
         <renderers>
             <xsl-renderer content-type="xml" mime-type="text/xml" file="sort-merge.xsl"/>
         </renderers>
-        <description>A merged and sorted data set.</description>
+        <description>Объединённый и упорядоченный набор данных.</description>
         <example><![CDATA[sort-merge.xml]]></example>
     </query-controller>
     <query-controller uri-pattern="/compare-refs.*">
@@ -88,7 +88,7 @@
         <renderers>
             <xsl-renderer content-type="html" mime-type="text/html" file="compare-refs.xsl"/>
         </renderers>
-        <description>A comparison of references.</description>
+        <description>Сравнение источников.</description>
         <example><![CDATA[compare-refs.html]]></example>
     </query-controller>
     <query-controller uri-pattern="/languages/index.*">
@@ -99,7 +99,7 @@
         <renderers>
             <xquery-renderer content-type="html" mime-type="text/html" file="language-index.xq"/>
         </renderers>
-        <description>A list of languages for the dictionary.</description>
+        <description>Перечень языков для словаря.</description>
         <example><![CDATA[index.html]]></example>
     </query-controller>
     <query-controller uri-pattern="/language-pages/*">
@@ -155,7 +155,7 @@
         <renderers>
             <xquery-renderer content-type="html" mime-type="text/html" file="word-page.xq"/>
         </renderers>
-        <description>A word page.</description>
+        <description>Слово.</description>
     </query-controller>
     <query-controller uri-pattern="/category-indexes/*">
         <uri-template-parser template='categories-{id}.{content-type}' />
@@ -219,7 +219,7 @@
         <renderers>
             <xquery-renderer content-type="html" mime-type="text/html" file="reference-page.xq"/>
         </renderers>
-        <description>A reference page.</description>
+        <description>Источник.</description>
         <example><![CDATA[CO.html]]></example>
     </query-controller>
     <query-controller uri-pattern="/references/index.*">
@@ -230,7 +230,7 @@
         <renderers>
             <xquery-renderer content-type="html" mime-type="text/html" file="reference-index.xq"/>
         </renderers>
-        <description>A list of references for the dictionary.</description>
+        <description>Перечень источников для словаря.</description>
         <example><![CDATA[index.html]]></example>
     </query-controller>
     <query-controller uri-pattern="/references/*">
@@ -241,7 +241,7 @@
         <renderers>
             <xquery-renderer content-type="html" mime-type="text/html" file="reference-page.xq"/>
         </renderers>
-        <description>A reference page.</description>
+        <description>Источник.</description>
         <example><![CDATA[CO.html]]></example>
     </query-controller>
     <query-controller uri-pattern="/errors/unmatched-links.*">
@@ -252,7 +252,7 @@
         <renderers>
             <xquery-renderer content-type="html" mime-type="text/html" file="unmatched-links.xq"/>
         </renderers>
-        <description>Unmatched links.</description>
+        <description>Неподходящие ссылки.</description>
         <example><![CDATA[unmatched-links.html]]></example>
     </query-controller>
     <query-controller uri-pattern="/errors/misordered-rules.*">
@@ -263,7 +263,7 @@
         <renderers>
             <xquery-renderer content-type="html" mime-type="text/html" file="misordered-rules.xq"/>
         </renderers>
-        <description>Misordered rules.</description>
+        <description>Неупорядоченные правила.</description>
         <example><![CDATA[misordered-rules.html]]></example>
     </query-controller>
     <query-controller uri-pattern="/search/search-index.js">
@@ -274,7 +274,7 @@
         <renderers>
             <xquery-renderer content-type="js" mime-type="application/javascript" file="search-index.xq"/>
         </renderers>
-        <description>A search index.</description>
+        <description>Поисковые данные.</description>
         <example><![CDATA[search-index.js]]></example>
     </query-controller>
     <query-controller uri-pattern="/search/search.html">
@@ -285,7 +285,7 @@
         <renderers>
             <xquery-renderer content-type="html" mime-type="text/html" file="search.xq"/>
         </renderers>
-        <description>The search page.</description>
+        <description>Поиск.</description>
         <example><![CDATA[search.html]]></example>
     </query-controller>
     <query-controller uri-pattern="/search/search-adv-index.js">
@@ -296,7 +296,7 @@
         <renderers>
             <xquery-renderer content-type="js" mime-type="application/javascript" file="search-adv-index.xq"/>
         </renderers>
-        <description>Advanced search index.</description>
+        <description>Данные для продвинутого поиска.</description>
         <example><![CDATA[search-adv-index.js]]></example>
     </query-controller>
     <query-controller uri-pattern="/search/advanced-search.html">
@@ -307,7 +307,7 @@
         <renderers>
             <xquery-renderer content-type="html" mime-type="text/html" file="search-adv.xq"/>
         </renderers>
-        <description>The advanced search page.</description>
+        <description>Продвинутый поиск.</description>
         <example><![CDATA[advanced-search.html]]></example>
     </query-controller>
     <query-controller uri-pattern="/sindarin-dictionary/export.*">

@@ -26,28 +26,28 @@ declare function local:print-phrase($word as element()) as element() {
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta><meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"></meta>
-<title>Eldamo : {$lang-name} Phrases</title>
+<title>Eldamo : {$lang-name} : Фразы</title>
 <link type="text/css" rel="stylesheet" href="../../css/global.css" />
 </head>
 <body>
 <div id="nav-block" class="nav-block">
-    [<a href="../../index.html">Home</a>] »
+    [<a href="../../index.html">На главную страницу</a>] »
 <span class="breadcrumb-nav">
-    <a href="../languages/index.html">Languages</a> »&#160;
+    <a href="../languages/index.html">Языки</a> »&#160;
 </span>
     <a href="../language-pages/lang-{$id}.html">{$lang-name}</a>
 </div>
 <hr/>
-<h1>{$lang-name} Phrases</h1>
+<h1>{$lang-name} - Фразы</h1>
 {xdb:html($lang/phrases/string())}
 <hr/>
-{if ($lang-words[c:get-speech(.) = 'text']) then <h2>Texts</h2> else ()}
+{if ($lang-words[c:get-speech(.) = 'text']) then <h2>Тексты</h2> else ()}
 <ul style="list-style-type: none; padding: 0; margin: 0;"> {
 for $word in $lang-words[c:get-speech(.) = 'text'][not(parent::word[c:get-lang(.) = $id])]
 order by c:normalize-for-sort($word/@v)
 return local:print-phrase($word)
 } </ul>
-{if ($lang-words[c:get-speech(.) = 'text']) then <h2>Phrases</h2> else ()}
+{if ($lang-words[c:get-speech(.) = 'text']) then <h2>Фразы</h2> else ()}
 <ul style="list-style-type: none; padding: 0; margin: 0;"> {
 let $lang-words := /*//word[@l=$id]
 for $word in $lang-words[c:get-speech(.) = 'phrase'][not(parent::word[c:get-lang(.) = $id])]

@@ -28,7 +28,7 @@ declare variable $lang-name := $lang/@name/string();
     <a href="../language-pages/lang-{$id}.html">{$lang-name}</a>
 </div>
 <hr/>
-<h1>{$lang-name}: Слова</h1>
+<h1>{$lang-name} - Слова</h1>
 {xdb:html($lang/words/string())}
 <hr/> { 
 let $words := c:lang-words(/*, $id)
@@ -103,7 +103,7 @@ return (
             if ($word/@vetted) then concat('утвердил(а) ', $word/@vetted/string()) else '',
           ']') }
         { if ($word/see and not($neo-lang and $deprecated))
-          then (' see ', c:print-word(c:get-word($word/see),
+          then (' см. ', c:print-word(c:get-word($word/see),
             <control show-link="y" normalize="{$normalize}"> {
               if ($neo-lang or c:get-lang($word) != $word/see/@l) then attribute show-lang {'y'} else ()
             } </control>

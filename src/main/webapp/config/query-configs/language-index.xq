@@ -25,30 +25,22 @@ declare function local:has-lang($lang as xs:string?) as xs:boolean {
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta><meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"></meta>
-<title>Eldamo : Language Index</title>
+<title>Eldamo : Указатель языков</title>
 <link type="text/css" rel="stylesheet" href="../../css/global.css" />
 </head>
 <body>
-<p>[<a href="../../index.html">Home</a>]</p>
+<p>[<a href="../../index.html">На главную страницу</a>]</p>
 <hr/>
-<h1>Language Index</h1>
+<h1>Указатель языков</h1>
 <ul> {
 for $lang-cat in /*/language-cat
 return
 <li><b><a href="#{$lang-cat/@id/string()}">{$lang-cat/@name/string()}</a></b></li>
 } </ul>
-<p>This page lists the languages included in this lexicon, broken down into various time periods. Within each period,
-languages are arranged hierarchically by descent: child languages that were derived from more ancient languages.</p>
-<p>The “Combined” or “Neo” languages assemble words from various periods, including fan creations (neologisms). These
-“Combined” lists are most useful for new Elvish writing. Be cautious using these collections of words, however, since
-they mix words from various periods. The time period of each word is indicated by its language marker, and there are
-various other “<a href="../../general/terminology-and-notations.html#reliability-markers">reliability markers</a>” that
-can be used a guide for the level of quality of each word.</p>
-<p>The other languages are present as Tolkien described them in various periods of his life: Early (1910-1930), Middle
-(1930-1950) and Late (1950-1973). They include only those forms that Tolkien wrote in that particular period. Bear in
-mind, though, that Tolkien frequently used early forms in his later writings. Even if a particular early form did not
-appear, this does not necessarily mean Tolkien no longer considered it valid. Where possible, this lexicon tries to
-trace the conceptual evolution of individual words in Tolkien’s writing.</p>
+<p>Эта страница содержит перечень языков, включённых в данный лексикон, распределённых по различнным временн<i>ы</i>м периодам. В рамках каждого периода языки иерархически отсортированы по своему происхождению: младшие языки, которые произошли от более древних языков.</p>
+<p>“Составные” или “нео” языки объединяют слова из различных временн<i>ы</i>х периодов, включая фанатиские привнесения (неологизмы). Эти “составные” списки наиболее часто используются для современных сочинений на эльфийских языках. Следует однако же быть осторожным при пользовании этими словарными списками, так как в них смешаны слова из различных периодов. Временной период каждого слова обозначается соответствующим языковым обозначанием, а кроме того имеются различные “<a href="../../general/terminology-and-notations.html#reliability-markers">обозначения надёжности</a>”, по которым можно узнать уровень добротности каждого слова.</p>
+<p>Прочие языки представлены в том виде, в котором Толкин их описывал в различные периоды своей жизни: ранний (1910-1930), средний
+(1930-1950) и поздний (1950-1973). В них имеются только те формы, которые Толкин приводил в каждом конкретном периоде. Следует однако же иметь в виду, что Толкин часто употреблял ранние формы в своих поздних работах. Даже если какая-либо ранняя форма не встречается позднее, из этого не следует, что Толкин больше не считал её верной. В данном лексиконе, насколько это возможно, отслеживается история разработки каждого отдельного слова в работах Толкина.</p>
 <div> {
 for $lang-cat in /*/language-cat
 return (

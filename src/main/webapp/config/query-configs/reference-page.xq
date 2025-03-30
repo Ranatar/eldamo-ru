@@ -175,13 +175,13 @@ return
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta><meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"></meta>
-<title>Eldamo : {$name} ({$prefix}) References</title>
+<title>Eldamo : Источник : {$name} ({$prefix})</title>
 <link type="text/css" rel="stylesheet" href="../../css/global.css" />
 </head>
 <body>
 <p>
-   [<a href="../../index.html">Home</a>] »
-   <a href="index.html">Reference Index</a>
+   [<a href="../../index.html">На главную страницу</a>] »
+   <a href="index.html">Перечень источников</a>
 </p>
 <hr/>
 <h1>{$name} ({$prefix})</h1>

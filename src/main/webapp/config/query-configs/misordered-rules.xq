@@ -9,20 +9,20 @@ declare function local:order-of($rule as element()?) as xs:string? {
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta><meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"></meta>
-<title>Misordered Rules</title>
+<title>Неупорядоченные правила</title>
 <link type="text/css" rel="stylesheet" href="../../css/global.css" />
 </head>
 <body>
-<p>[<a href="../../index.html">Home</a>]</p>
+<p>[<a href="../../index.html">На главную страницу</a>]</p>
 <hr/>
-<h1>Misordered Rules</h1>
+<h1>Неупорядоченные правила</h1>
 {
 let $rules-mismatch := //word[@speech='phonetic-rule'][not(@rule)][count(rule) gt 1]
 let $rules := //word[@speech='phonetic-rule'][before]
 let $bad-rules :=
     $rules[before[@l=../@l][c:get-word(.)/@order lt ../@order]] | $rules-mismatch
 return (
-<p><b>Bad Rules: </b> {count($bad-rules)}</p>,
+<p><b>Плохие правила: </b> {count($bad-rules)}</p>,
 <dl> {
     for $word in $bad-rules
     order by $word/c:get-lang(.), c:normalize-for-sort($word/@v)
@@ -38,7 +38,7 @@ let $bad-words :=
         @l = preceding-sibling::rule-example[1]/@l
     ]] 
 return (
-<p><b>Bad Words: </b> {count($bad-words)}</p>,
+<p><b>Плохие слова: </b> {count($bad-words)}</p>,
 <dl> {
     for $word in $bad-words
     order by $word/c:get-lang(.), c:normalize-for-sort($word/@v)

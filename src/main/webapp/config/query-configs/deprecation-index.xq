@@ -8,7 +8,7 @@ declare variable $lang-name := $lang/@name/string();
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta><meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"></meta>
-<title>Eldamo : {$lang-name} Deprecated Words</title>
+<title>Eldamo : {$lang-name} : Нерекомендуемые слова</title>
 <link type="text/css" rel="stylesheet" href="../../css/global.css" />
 
 <script src="../../js/glaemscribe.min.js"></script>
@@ -21,14 +21,14 @@ declare variable $lang-name := $lang/@name/string();
 </head>
 <body>
 <div id="nav-block" class="nav-block">
-    [<a href="../../index.html">Home</a>] »
+    [<a href="../../index.html">На главную страницу</a>] »
 <span class="breadcrumb-nav">
-    <a href="../languages/index.html">Languages</a> »&#160;
+    <a href="../languages/index.html">Языки</a> »&#160;
 </span>
     <a href="../language-pages/lang-{$id}.html">{$lang-name}</a>
 </div>
 <hr/>
-<h1>{$lang-name} Deprecated Words</h1>
+<h1>{$lang-name} - Нерекомендуемые слова</h1>
 {xdb:html($lang/deprecations/string())}
 <hr/> { 
 let $words := c:lang-words(/*, $id)
@@ -97,12 +97,12 @@ return (
         { c:print-speech($word) }
         { if ($neo-lang) then c:print-neo-gloss($word) else c:print-gloss($word) }
         { if ($word/see and not($neo-lang and $deprecated))
-          then (' see ', c:print-word(c:get-word($word/see),
+          then (' см. ', c:print-word(c:get-word($word/see),
             <control show-link="y" normalize="{$normalize}"> {
               if ($neo-lang or c:get-lang($word) != $word/see/@l) then attribute show-lang {'y'} else ()
             } </control>
         )) else () }
-        {   if ($neo-lang and $deprecated/@v) then ('; see instead:',
+        {   if ($neo-lang and $deprecated/@v) then ('; см. замену:',
             for $x in $deprecated return <dd class="see-instead"> {
                 c:print-word(c:get-word($x), <control show-link="y" normalize="{$normalize}" show-lang="y" show-gloss="y" is-neo="y"/>)
             } </dd>
@@ -113,7 +113,7 @@ if ($pubmode != 'false') then () else (
 let $unglossed := $word-list[not(c:get-gloss(.))]
 return (
 if (not($unglossed)) then () else (
-<h3>Unglossed [{count($unglossed)}]</h3>,
+<h3>У [{count($unglossed)}] слов толкование отсутствует</h3>,
 <dl> {
 for $word in $unglossed
 order by c:normalize-for-sort($word/@v)

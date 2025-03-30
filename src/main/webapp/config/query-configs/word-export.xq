@@ -1,14 +1,14 @@
 import module namespace c = "common.xq" at "common.xq";
 
 declare function local:get-status($word as element()) as xs:string {
-    if (contains($word/@mark, '-')) then 'Deleted'
-    else if (contains($word/@mark, '|')) then 'Deleted'
-    else if ($word/combine) then 'Combined'
-    else if ($word/deprecated) then 'Not Recommended'
+    if (contains($word/@mark, '-')) then 'Удалено'
+    else if (contains($word/@mark, '|')) then 'Удалено'
+    else if ($word/combine) then 'Составное'
+    else if ($word/deprecated) then 'Не рекомендовано'
     else 'OK'
 };
 
-concat(concat('"Eldamo Export Version ', /word-data/@version, '"&#10;'),
+concat(concat('"Версия экспорта Eldamo ', /word-data/@version, '"&#10;'),
 '"Page ID","Lang","Word","Speech","Gloss","Status","Cat #","Category"&#10;',
 string-join(for $word in //word
     [not(starts-with(c:get-speech(.), 'phon'))]

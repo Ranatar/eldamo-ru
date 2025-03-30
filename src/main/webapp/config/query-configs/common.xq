@@ -286,20 +286,39 @@ declare function c:print-speech($ref as element()?) as element()? {
 declare function c:display-speech($ref as element()?) as xs:string? {
     let $speech := c:get-speech($ref)
     let $display :=
-        if (contains($speech, ' ')) then
-            let $a := tokenize($speech, '\s')
-            let $r := string-join($a, '. and ')
-            return concat(' ', $r, '.')
-        else if ($speech='masc-name') then ' m.'
-        else if ($speech='fem-name') then ' f.'
-        else if ($speech='place-name') then ' loc.'
-        else if ($speech='collective-name') then ' coll.'
-        else if ($speech='collective-noun') then ' coll.'
-        else if ($speech='proper-name') then ' pn.'
-        else if ($speech='cardinal') then ' num. card.'
-        else if ($speech='ordinal') then ' num. ord.'
-        else if ($speech='vb') then ' v.'
+(:        if (contains($speech, ' ')) then          :)
+(:           let $a := tokenize($speech, '\s')      :)
+(:            let $r := string-join($a, '. и ')     :)
+(:            return concat(' ', $r, '.')           :)
+(:        else  if ($speech='masc-name') then ' м.' :)
+        if ($speech='masc-name') then ' м.'
+        else if ($speech='fem-name') then ' ж.'
+        else if ($speech='place-name') then ' геогр.'
+        else if ($speech='collective-name') then ' собир.'
+        else if ($speech='collective-noun') then ' собир.'
+        else if ($speech='proper-name') then ' им.'
+        else if ($speech='cardinal') then ' к. числ'
+        else if ($speech='ordinal') then ' п. числ.'
+        else if ($speech='vb') then ' гл.'
+        else if ($speech='n') then ' сущ.'
+        else if ($speech='adj') then ' прил.'
+        else if ($speech='adv') then ' нар.'
+        else if ($speech='pron') then ' мест.'
+        else if ($speech='conj') then ' c.'
+        else if ($speech='interj') then ' межд.'
+        else if ($speech='suf') then ' суф.'
+        else if ($speech='pref') then ' прист.'
+        else if ($speech='prep') then ' пред.'
+        else if ($speech='root') then ' кор.'
+        else if ($speech='adv adj') then 'нар. и прил.'
+        else if ($speech='adj adv') then 'прил. и нар.'
+        else if ($speech='adj n') then 'прил. и сущ.'
+        else if ($speech='adv n') then 'нар. и сущ.'
+        else if ($speech='n adj') then 'сущ. и прил.'
+        else if ($speech='prep adv') then 'пред. и нар.'
+        else if ($speech='conj adv') then 'с. и нар.'
         else if ($speech='phrase') then ''
+        else if ($speech='grammar') then ''
         else if ($speech='text') then ''
         else if ($speech='phonetic-group') then ''
         else if ($speech='phoneme') then ''

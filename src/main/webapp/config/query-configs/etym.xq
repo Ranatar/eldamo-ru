@@ -33,28 +33,32 @@ declare function local:skip-deriv($ref as element()?, $cognate-refs as element()
 declare function local:show-speech($ref as element()?) {
     let $speech := $ref/c:get-speech($ref)
     return 
-    if ($speech='vb')
-        then 'v.'
-    else if ($speech='collective-noun')
-        then 'coll.'
-    else if ($speech='cardinal')
-        then 'card.'
-    else if ($speech='ordinal')
-        then 'ord.'
-    else if ($speech='adv adj')
-        then 'adv. adj.'
-    else if ($speech='adj adv')
-        then 'adj. adv.'
-    else if ($speech='adj n')
-        then 'adj. n.'
-    else if ($speech='adv n')
-        then 'adv. n.'
-    else if ($speech='n adj')
-        then 'n. adj.'
-    else if ($speech='prep adv')
-        then 'prep. adv.'
-    else if ($speech='conj adv')
-        then 'conj. adv.'
+    if ($speech='masc-name') then ' м.'
+        else if ($speech='fem-name') then ' ж.'
+        else if ($speech='place-name') then ' геогр.'
+        else if ($speech='collective-name') then ' собир.'
+        else if ($speech='collective-noun') then ' собир.'
+        else if ($speech='proper-name') then ' им.'
+        else if ($speech='cardinal') then ' к. числ'
+        else if ($speech='ordinal') then ' п. числ.'
+        else if ($speech='vb') then ' гл.'
+        else if ($speech='n') then ' сущ.'
+        else if ($speech='adj') then ' прил.'
+        else if ($speech='adv') then ' нар.'
+        else if ($speech='pron') then ' мест.'
+        else if ($speech='conj') then ' c.'
+        else if ($speech='interj') then ' межд.'
+        else if ($speech='suf') then ' суф.'
+        else if ($speech='pref') then ' прист.'
+        else if ($speech='prep') then ' пред.'
+        else if ($speech='root') then ' кор.'
+        else if ($speech='adv adj') then 'нар. и прил.'
+        else if ($speech='adj adv') then 'прил. и нар.'
+        else if ($speech='adj n') then 'прил. и сущ.'
+        else if ($speech='adv n') then 'нар. и сущ.'
+        else if ($speech='n adj') then 'сущ. и прил.'
+        else if ($speech='prep adv') then 'пред. и нар.'
+        else if ($speech='conj adv') then 'с. и нар.'
     else if (contains($speech, ' '))
         then concat($speech, '. ???')
     else concat($speech, '.')
@@ -66,67 +70,67 @@ declare function local:show-infect($ref as element()?) {
     if ($form='vowel-suppression')
         then ''
     else if ($form='plural')
-        then 'pl. '
+        then 'мн.ч. '
     else if ($form='class-plural')
-        then 'cl.pl. '
+        then 'кл.мн.ч. '
     else if ($form='dual')
-        then 'du. '
+        then 'дв.ч. '
     else if ($form='infinitive')
-        then 'inf. '
+        then 'инф. '
     else if ($form='present')
-        then 'pres. '
+        then 'н.в. '
     else if ($form='aorist')
-        then 'aor. '
+        then 'аор. '
     else if ($form='aorist 1st-sg')
-        then 'aor. 1st.sg. '
+        then 'аор. 1л. ед.ч. '
     else if ($form='present 1st-sg')
-        then 'pres. 1st.sg. '
+        then 'н.в. 1л. ед.ч. '
     else if ($form='present 3rd-sg')
-        then 'pres. 3rd.sg. '
+        then 'н.в. 3л. ед.ч. '
     else if ($form='past 1st-sg')
-        then 'pa.t. 1st.sg. '
+        then 'пр.в. 1л. ед.ч. '
     else if ($form='imperative')
-        then 'imp. '
+        then 'повел. '
     else if ($form='soft-mutation')
-        then 'soft mut. '
+        then 'мяг.пер. '
     else if ($form='soft-mutation plural')
-        then 'soft mut. pl. '
+        then 'мяг.пер. мн.ч. '
     else if ($form='soft-mutation class-plural')
-        then 'soft mut. cl.pl. '
+        then 'мяг.пер. кл.мн.ч. '
     else if ($form='soft-mutation present plural')
-        then 'soft mut. pres. pl. '
+        then 'мяг.пер. н.в. мн.ч. '
     else if ($form='soft-mutation gerund')
-        then 'soft mut. pres. ger. '
+        then 'мяг.пер. н.в. гер. '
     else if ($form='nasal-mutation plural')
-        then 'nasal mut. pl. '
+        then 'нос.пер. мн.ч. '
     else if ($form='past')
-        then 'pa.t. '
+        then 'пр.в. '
     else if ($form='strong-past') (: FIXME - Make strong-past a variant :)
-        then 'pa.t. '
+        then 'пр.в. '
     else if ($form='genitive')
-        then 'g.sg. '
+        then 'р.п. ед.ч. '
     else if ($form='genitive plural')
-        then 'g.pl. '
+        then 'р.п. мн.ч. '
     else if ($form='genitive dual')
-        then 'g.du. '
+        then 'р.п. дв.ч. '
     else if ($form='prefix')
-        then 'pref. '
+        then 'прист. '
     else if ($form='suffix')
-        then 'suf. '
+        then 'суф. '
     else if ($form='stem')
-        then 'stem '
+        then 'осн. '
     else if ($form='possessive')
-        then 'poss. '
+        then 'п.п. '
     else if ($form='gerund')
-        then 'ger. '
+        then 'гер. '
     else if ($form='intensive')
         then ''
     else if ($form='ablative')
-        then 'abl. '
+        then 'ис.п '
     else if ($form='locative')
-        then 'loc. '
+        then 'м.п. '
     else if ($form='passive-participle')
-        then 'pass.part. '
+        then 'стр.прич. '
     else concat($form, ' ??? ')
 };
 
@@ -175,11 +179,11 @@ declare function local:show-ref($lang as xs:string*, $refs as element()*) {
 
 <html>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta><meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"></meta>
-<title>Etymologies Export</title>
+<title>Экспорт этимологий</title>
 <link type="text/css" rel="stylesheet" href="../../css/global.css" />
 <body>
 <table>
-<tr><th>Source</th><th>Base</th><th>Speech</th><th>PQ</th><th>Q</th><th>ON</th><th>N</th><th>T</th><th>Ilk</th><th>Dan</th><th>Fal</th></tr>
+<tr><th>Источник</th><th>Корень</th><th>Часть речи</th><th>PQ</th><th>Q</th><th>ON</th><th>N</th><th>T</th><th>Ilk</th><th>Dan</th><th>Fal</th></tr>
  {
 for $word in //word[local:is-root(.)][ref[contains(@source, 'Ety')]]
 let $refs := $word/ref[contains(@source, 'Ety')][not(correction)]

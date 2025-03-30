@@ -341,17 +341,17 @@ li ul li {{list-style-type:none}}
 </span>
 {
 if (ends-with(c:get-speech($words[1]), '-name')) then    
-    <a href="../name-indexes/names-{$l}.html">{$lang}: Имена</a>
+    <a href="../name-indexes/names-{$l}.html">{$lang} - Имена</a>
 else if (c:get-speech($words[1]) = 'phrase' or c:get-speech($words[1]) = 'text') then    
-    <a href="../phrase-indexes/phrases-{$l}.html">{$lang}: Фразы</a>
+    <a href="../phrase-indexes/phrases-{$l}.html">{$lang} - Фразы</a>
 else if (c:get-speech($words[1]) = 'grammar') then    
-    <a href="../grammar-indexes/grammars-{$l}.html">{$lang}: Граматика</a>
+    <a href="../grammar-indexes/grammars-{$l}.html">{$lang} - Граматика</a>
 else if (c:get-speech($words[1]) = 'root') then    
-    <a href="../root-indexes/roots-{$l}.html">{$lang}: Корни</a>
+    <a href="../root-indexes/roots-{$l}.html">{$lang} - Корни</a>
 else if (starts-with(c:get-speech($words[1]), 'phone')) then    
-    <a href="../phonetic-indexes/phonetics-{$l}.html">{$lang}: Фонетика</a>
+    <a href="../phonetic-indexes/phonetics-{$l}.html">{$lang} - Фонетика</a>
 else
-    <a href="../word-indexes/words-{$l}.html">{$lang}: Слова</a>
+    <a href="../word-indexes/words-{$l}.html">{$lang} - Слова</a>
 }
 </span>
 <span class="search-nav-link">[<a href="../search/search.html">Поиск</a>]</span>
@@ -426,20 +426,20 @@ if (not($neo-lang) or not($allow-neo-nav)) then () else (
 </span>
 {
 if (ends-with(c:get-speech($words[1]), '-name')) then    
-    <a href="../name-indexes/names-{$l}.html">{$lang}: Имена</a>
+    <a href="../name-indexes/names-{$l}.html">{$lang} - Имена</a>
 else if (c:get-speech($words[1]) = 'phrase' or c:get-speech($words[1]) = 'text') then    
-    <a href="../phrase-indexes/phrases-{$l}.html">{$lang}: Фразы</a>
+    <a href="../phrase-indexes/phrases-{$l}.html">{$lang} - Фразы</a>
 else if (c:get-speech($words[1]) = 'grammar') then    
-    <a href="../grammar-indexes/grammars-{$l}.html">{$lang}: Грамматика</a>
+    <a href="../grammar-indexes/grammars-{$l}.html">{$lang} - Грамматика</a>
 else if (c:get-speech($words[1]) = 'root') then    
-    <a href="../root-indexes/roots-{$l}.html">{$lang}: Корни</a>
+    <a href="../root-indexes/roots-{$l}.html">{$lang} - Корни</a>
 else if (starts-with(c:get-speech($words[1]), 'phone')) then    
-    <a href="../phonetic-indexes/phonetics-{$l}.html">{$lang}: Фонетика</a>
+    <a href="../phonetic-indexes/phonetics-{$l}.html">{$lang} - Фонетика</a>
 else
-    <a href="../word-indexes/words-{$l}.html">{$lang}: Слова</a>
+    <a href="../word-indexes/words-{$l}.html">{$lang} - Слова</a>
 }
 </span>
-<span class="search-nav-link">[<a href="../search/search.html">Search</a>]</span>
+<span class="search-nav-link">[<a href="../search/search.html">Поиск</a>]</span>
 <hr class="nav-break"/>
 <span class="list-nav"> {
 let $lang := $l

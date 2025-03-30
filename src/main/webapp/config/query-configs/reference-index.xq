@@ -14,79 +14,66 @@ declare function local:list-references($sources as element()*) as node()* {
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta><meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"></meta>
-<title>Eldamo : Reference Index</title>
+<title>Eldamo : Перечень источников</title>
 <link type="text/css" rel="stylesheet" href="../../css/global.css" />
 </head>
 <body>
-<p>[<a href="../../index.html">Home</a>]</p>
+<p>[<a href="../../index.html">На главную страницу</a>]</p>
 <hr/>
-<h1>Reference Index</h1>
-<p>Here is a list of abbreviations for the sources used in this lexicon, with links to citations for individual
-sources.</p>
-<h2>Primary Sources</h2>
-<p>The following publications include primary source material, written by Tolkien himself.</p>
+<h1>Перечень источников</h1>
+<p>Здесь представлен перечень сокращений для источников, используемых в этом лексиконе, со ссылками для цитирования каждого отдельного источника.</p>
+<h2>Первоисточники</h2>
+<p>Нижеследующие публикации содержат материал первоисточников, написанных самим Толкином.</p>
 <ul> {
     local:list-references(/*/source[not(@type)])
 } </ul>
-<p><b>Major Works:</b></p>
-<p>It is common in the literature to cite some of Tolkien’s major linguistic works directly by name rather than by the
-source in which the text appear. This lexicon also follows this convention. The dates in the citations below are the
-dates of probable composition.</p>
+<p><b>Основные работы:</b></p>
+<p>Общераспространённой практикой является цитирование некоторых основных лингвистических работ Толкина напрямую по их названию вместо указания источника, в котором содержится соответствующий текст. Этот лексикон следует данной практике. Даты для нижеприведённых работ соответсвуют приблизительно годам, когда был составлен соответствующий текст.</p>
 <ul> {
     local:list-references(/*/source[@type='work'])
 } </ul>
-<p><b>Minor Works:</b></p>
-<p>The following are reference to minor or fragmentary works not appearing in other, larger documents (such as Elvish
-quotes in inscriptions or letters), or works that contain only isolated Elvish samples.</p>
+<p><b>Малые работы:</b></p>
+<p>Нижеприведённые источники представляют собой малые или фрагментарные работы, которые не представлены в других, объёмных документах (например, эльфийские цитаты в надписях или письмах), или же они содержат лишь отдельные примеры на эльфийских языках.</p>
 <ul> {
     local:list-references(/*/source[@type='minor-work'])
 } </ul>
-<p><b>Indices:</b></p>
-<p>To avoid referencing every appearance of a proper name in a given primary source, this lexicon instead references its
-entry in that source’s index. Proper names are only referenced directly in primary sources if its appearance
-includes other important linguistic information, such as a translation or etymology of the name. The indices also
-sometimes include linguistic information not available elsewhere.</p>
+<p><b>Указатели:</b></p>
+<p>Чтобы избежать необходимости приводить ссылки на каждое упоминание имени собственного в соответствующем первоисточнике, в этом лексиконе приводится ссылка на соответствующую статью в указателе первоисточника. Ссылки на текст первоисточника по именам собственным приводятся в случае, если они сопровождаются важной лингвистической информацией, например переводом или этимологией имени. В указателях иногда содержится также лингвистическая информация, не встречающаяся в иных местах.</p>
 <ul> {
     local:list-references(/*/source[@type='index'])
 } </ul>
-<p><b>Appendices:</b></p>
-<p>Some of the primary sources include large appendices of word lists compiled by Christopher Tolkien.
-These are referenced separately from the main works.</p>
+<p><b>Приложения:</b></p>
+<p>Некоторые первоисточники снабжены объёмными приложениями со словарными списками, составленными Кристофером Толкином. Ссылки на них приводятся отдельно от основного текста.</p>
 <ul> {
     local:list-references(/*/source[@type='appendix'])
 } </ul>
-<h2>Secondary Sources</h2>
-<p>The following documents include analysis of primary material, but do not themselves include
-original writing by Tolkien. Some are specific to particular languages, as noted below.</p>
+<h2>Производные источники</h2>
+<p>Нижеследующие документы включают в себя анализ материалов первоисточников, но не содержат оригинальных работ Толкина. Некоторые из них посвящены отдельным языкам, как указано ниже.</p>
 <ul> {
     local:list-references(/*/source[@type='secondary'])
 } </ul>
-<p><b>Quenya:</b></p>
+<p><b>Квэнья:</b></p>
 <ul> {
     local:list-references(/*/source[@type='quenya'])
 } </ul>
-<p><b>Sindarin:</b></p>
+<p><b>Синдарин:</b></p>
 <ul> {
     local:list-references(/*/source[@type='sindarin'])
 } </ul>
-<p><b>Telerin:</b></p>
+<p><b>Тэлерин:</b></p>
 <ul> {
     local:list-references(/*/source[@type='telerin'])
 } </ul>
-<p><b>Minor Elvish Languages (Ilkorin, Danian and Others):</b></p>
+<p><b>Малые эльфийские языки (илькорин, дориатрин, данский и другие):</b></p>
 <ul> {
     local:list-references(/*/source[@type='minor'])
 } </ul>
-<p><b>Adûnaic:</b></p>
+<p><b>Адунаик:</b></p>
 <ul> {
     local:list-references(/*/source[@type='adunaic'])
 } </ul>
-<h2><a name="Neologisms"></a>Neologisms</h2>
-<p>The following are some of the sources of the neologisms that appear in Eldamo. Not every neologism appearing in these
-sources also appears in Eldamo, and vice versa. In general, neologisms in Eldamo are credited by creator rather than
-source, but there are exceptions in the case of Neo-Eldarin authors with large bodies of work. Furthermore, some sources
-don’t list the original creator, in which case Eldamo credits the source. Uncredited neologisms in Eldamo were either
-created by me (Paul Strack) or have an unknown source.</p>
+<h2><a name="Neologisms"></a>Неологизмы</h2>
+<p>В этом разделе приведены некоторые источники по неологизмам, которые включены в Eldamo. Не каждый неологизм, встречающийся в этих источниках, имеется также и на Eldamo и наоборот. В основном, неологизм на Eldamo закреплён за автором, а не за источником, но встречаются исключения, если у авторов на нео-эльдарине имеется работа значительного объёма. Более того, в некоторых источниках не указаны конкретные авторы, и в этом случае на Eldamo указан именно источник. Неологизмы без указания авторства предложил я (Пол Штрэк) или их источник неизвестен.</p>
 <ul> {
     local:list-references(/*/source[@type='neologisms'])
 } </ul>

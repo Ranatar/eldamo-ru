@@ -9,7 +9,7 @@ declare variable $secondary-word := <control show-link="y"/>;
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta><meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"></meta>
-<title>Eldamo : {$lang-name} Roots</title>
+<title>Eldamo : {$lang-name} : Корни</title>
 <link type="text/css" rel="stylesheet" href="../../css/global.css" />
 
 <script src="../../js/glaemscribe.min.js"></script>
@@ -22,14 +22,14 @@ declare variable $secondary-word := <control show-link="y"/>;
 </head>
 <body>
 <div id="nav-block" class="nav-block">
-    [<a href="../../index.html">Home</a>] »
+    [<a href="../../index.html">На главную страницу</a>] »
 <span class="breadcrumb-nav">
-    <a href="../languages/index.html">Languages</a> »&#160;
+    <a href="../languages/index.html">Языки</a> »&#160;
 </span>
     <a href="../language-pages/lang-{$id}.html">{$lang-name}</a>
 </div>
 <hr/>
-<h1>{$lang-name} Roots</h1>
+<h1>{$lang-name} - Корни</h1>
 {xdb:html($lang/roots/string())}
 <hr/>
 <dl> {
@@ -61,8 +61,8 @@ return (
         { if ($word/see) then c:print-word($word, <control style="bold"/>) else c:print-word($word, $primary-word) }
         { c:print-speech($word) }
         { if ($neo-lang) then c:print-neo-gloss($word) else c:print-gloss($word) }
-        { if ($word/see) then (' see ', c:print-word(c:get-word($word/see), $secondary-word))  else () } 
-        { if ($neo-lang and $word/deprecated/@v) then ('; see instead:',
+        { if ($word/see) then (' см. ', c:print-word(c:get-word($word/see), $secondary-word))  else () } 
+        { if ($neo-lang and $word/deprecated/@v) then ('; см. замену:',
             for $deprecated in $word/deprecated return <dd class="see-instead"> {
                 c:print-word(c:get-word($deprecated), <control show-link="y" show-lang="y" show-gloss="y" is-neo="y"/>)
             } </dd>

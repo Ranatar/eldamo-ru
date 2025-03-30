@@ -30,22 +30,22 @@ declare function local:print-phoneme($word as element()?) as element() {
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta><meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"></meta>
-<title>Eldamo : {$lang-name} Phonetics</title>
+<title>Eldamo : {$lang-name} : Фонетика</title>
 <link type="text/css" rel="stylesheet" href="../../css/global.css" />
 </head>
 <body>
 <div id="nav-block" class="nav-block">
-    [<a href="../../index.html">Home</a>] »
+    [<a href="../../index.html">На главную страницу</a>] »
 <span class="breadcrumb-nav">
-    <a href="../languages/index.html">Languages</a> »&#160;
+    <a href="../languages/index.html">Языки</a> »&#160;
 </span>
     <a href="../language-pages/lang-{$id}.html">{$lang-name}</a>
 </div>
 <hr/>
-<h1>{$lang-name} Phonetics</h1>
+<h1>{$lang-name} - Фонетика</h1>
 {xdb:html($lang/phonetics/string())}
 
-{if ($phonemes) then <h2>Phonemes</h2> else ()}
+{if ($phonemes) then <h2>Фонемы</h2> else ()}
 {
 if (not($groups/@phone-row) or not($groups/@phone-col)) then () else
 <table> {(
@@ -102,9 +102,9 @@ if (not($groups/@phone-row) or not($groups/@phone-col)) then () else
     )} </tr>
 )}</table>
 
-{c:show-hierarchy($groups, 'phonetic-group', 'Phonetic Groups')}
+{c:show-hierarchy($groups, 'phonetic-group', 'Фонетические группы')}
 
-{if ($lang-words[c:get-speech(.) = 'phonetic-rule']) then <h2>Phonetic Rules</h2> else ()}
+{if ($lang-words[c:get-speech(.) = 'phonetic-rule']) then <h2>Фонетические правила</h2> else ()}
 <table> {
 for $word in $lang-words[c:get-speech(.) = 'phonetic-rule']
 let $from := ($word/@from | $word/rule/@from)[1]
@@ -140,7 +140,7 @@ let $unex-derivs := $lang-words
     [ref/deriv[not(c:is-root(c:get-ref(.)) and false())][string(.) = ''] and not(ref/deriv/rule-start)]
     [$pubmode != 'true']
 return if (count($unex-derivs) = 0) then () else (
-<p><b>Unexamined Derivatives ({count($unex-derivs)})</b></p>,
+<p><b>({count($unex-derivs)}) непроверенных производных</b></p>,
 <dl> {
 for $word in $unex-derivs
 let $deriv := $word/ref[deriv[not(c:is-root(c:get-ref(.)) and false())]][1]/deriv[1]

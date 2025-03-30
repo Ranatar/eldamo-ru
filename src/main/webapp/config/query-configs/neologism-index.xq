@@ -8,7 +8,7 @@ declare variable $lang-name := $lang/@name/string();
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"></meta><meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"></meta>
-<title>Eldamo : {$lang-name} Neologisms</title>
+<title>Eldamo : {$lang-name} : Неологизмы</title>
 <link type="text/css" rel="stylesheet" href="../../css/global.css" />
 
 <script src="../../js/glaemscribe.min.js"></script>
@@ -21,14 +21,14 @@ declare variable $lang-name := $lang/@name/string();
 </head>
 <body>
 <div id="nav-block" class="nav-block">
-    [<a href="../../index.html">Home</a>] »
+    [<a href="../../index.html">На главную страницу</a>] »
 <span class="breadcrumb-nav">
-    <a href="../languages/index.html">Languages</a> »&#160;
+    <a href="../languages/index.html">Языки</a> »&#160;
 </span>
     <a href="../language-pages/lang-{$id}.html">{$lang-name}</a>
 </div>
 <hr/>
-<h1>{$lang-name} Neologisms</h1>
+<h1>{$lang-name} - Неологизмы</h1>
 {xdb:html($lang/neologisms/string())}
 {
 let $words := xdb:key(/*, 'language', $id)
@@ -43,7 +43,7 @@ return
 if (count($unversioned) = 0) then () else 
 <div>
 <hr/>
-<h2>Unversioned</h2>
+<h2>Номер версии отсутствует</h2>
 <dl> {
 for $word in $unversioned
 let $alt-lang := c:alt-lang($word)
@@ -78,7 +78,7 @@ let $versions := distinct-values(xdb:key(/*, 'language', $id)/@neo-version)
 for $version in $versions
 order by $version descending
 return
-    <li><a href="#{$version}">Version {$version}</a></li>
+    <li><a href="#{$version}">Версия {$version}</a></li>
 } </ul>
 <hr/> { 
 let $versions := distinct-values(xdb:key(/*, 'language', $id)/@neo-version)
@@ -94,7 +94,7 @@ let $word-list := $words
         [not(c:get-speech(.)='grammar')]
         [not(starts-with(c:get-speech(.), 'phone'))]
 return (
-<h2><a name="{$version}"></a>Version {$version}</h2>,
+<h2><a name="{$version}"></a>Версия {$version}</h2>,
 <dl> {
 for $word in $word-list
 let $alt-lang := c:alt-lang($word)
@@ -144,7 +144,7 @@ return (
         { c:print-speech($word) }
         { if ($neo-lang) then c:print-neo-gloss($word) else c:print-gloss($word) }
         { if ($word/see and not($neo-lang and $deprecated))
-          then (' see ', c:print-word(c:get-word($word/see),
+          then (' см. ', c:print-word(c:get-word($word/see),
             <control show-link="y" normalize="{$normalize}"> {
               if ($neo-lang or c:get-lang($word) != $word/see/@l) then attribute show-lang {'y'} else ()
             } </control>
@@ -168,9 +168,9 @@ return (
         { if (not($word/@created or $word/@vetted)) then () else
           (' [',
             <span> { concat(
-            if ($word/@created) then concat('created by ', $word/@created/string()) else '',
+            if ($word/@created) then concat('предложил(а) ', $word/@created/string()) else '',
             if ($word/@created and $word/@vetted) then ', ' else '',
-            if ($word/@vetted) then concat('vetted by ', $word/@vetted/string()) else '')
+            if ($word/@vetted) then concat('утвердил(а) ', $word/@vetted/string()) else '')
             } </span>
           , ']') }
         { if (contains($word/@mark, "^")) then
@@ -196,7 +196,7 @@ if ($pubmode != 'false') then () else (
 let $unglossed := $word-list[not(c:get-gloss(.))]
 return (
 if (not($unglossed)) then () else (
-<h3>Unglossed [{count($unglossed)}]</h3>,
+<h3>У [{count($unglossed)}] слов толкование отсутствует</h3>,
 <dl> {
 for $word in $unglossed
 order by c:normalize-for-sort($word/@v)

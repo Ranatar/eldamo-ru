@@ -154,24 +154,46 @@ function convertLang(lang, speech) {
 }
 
 function convertSpeech(speech) {
-	if (speech.indexOf(' ') > 0) {
-		var a = speech.split(' ');
-		var result = convertSpeech(a[0]);
-		for (var i = 1; i < a.length; i++) {
-			result += " and " + convertSpeech(a[i]);
-		}
-		return result;
-	}
-	else if (speech === 'masc-name') speech = 'm.';
-	else if (speech === 'fem-name') speech = 'f.';
-	else if (speech === 'place-name') speech = 'loc.';
-	else if (speech === 'collective-name') speech = 'coll.';
-	else if (speech === 'collective-noun') speech = 'coll.';
-	else if (speech === 'proper-name') speech = 'pn.';
-	else if (speech === 'vb') speech = 'v.';
-	else speech += '.';
-	return speech;
-};
+    //if (speech.indexOf(' ') > 0) {
+    //  var a = speech.split(' ');
+    //  var result = convertSpeech(a[0]);
+    //  for (var i = 1; i < a.length; i++) {
+    //      result += " and " + convertSpeech(a[i]);
+    //  }
+    //  return result;
+    //}
+    //else if (speech === 'masc-name') speech = 'm.';
+    if (speech === 'masc-name') speech = 'м.';
+    else if (speech === 'fem-name') speech = 'ж.';
+    else if (speech === 'place-name') speech = 'геогр.';
+    else if (speech === 'collective-name') speech = 'собир.';
+    else if (speech === 'collective-noun') speech = 'собир.';
+    else if (speech === 'proper-name') speech = 'им.';
+    else if (speech === 'cardinal') then speech = 'к. числ';
+    else if (speech === 'ordinal') then speech = 'п. числ.';
+    else if (speech === 'vb') speech = 'гл.';
+    else if (speech === 'proper-name') speech = 'им.';
+    else if (speech === 'n') speech = 'сущ.'; 
+    else if (speech === 'adj') speech = 'прил.';      
+    else if (speech === 'adv') speech = 'нар.';
+    else if (speech === 'pron') speech = 'мест.';
+    else if (speech === 'conj') speech = 'с.';
+    else if (speech === 'interj') speech = 'межд.';
+    else if (speech === 'suf') speech = 'суф.';
+    else if (speech === 'pref') speech = 'прист.';
+    else if (speech === 'prep') speech = 'пред.';
+    else if (speech === 'root') speech = 'кор.';
+    else if (speech === 'adv adj') speech = 'нар. и прил.';
+    else if (speech === 'adj adv') speech = 'прил. и нар.';
+    else if (speech === 'adj n') speech = 'прил. и сущ.';
+    else if (speech === 'adv n') speech = 'нар. и сущ.';
+    else if (speech === 'n adj') speech = 'сущ. и прил.';
+    else if (speech === 'prep adv') speech = 'пред. и нар.'; 
+    else if (speech === 'conj adv') speech = 'с. и нар.';
+
+    else speech += '.';
+    return speech;
+}
 
 function initSearchBox() {
 }
