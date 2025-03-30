@@ -192,7 +192,7 @@ declare function local:print-derivatives($word as element()?, $top-level as xs:b
         [element/c:get-word(.)/xdb:hashcode(.) = $word/xdb:hashcode(.)]
     let $element-ins := if ($deriv-only) then () else $element-in-refs/.. | $word-elements
     return (
-        if ($top-level and ($deriv-tos or $element-ins)) then <p><u>Derivatives</u></p> else (),
+        if ($top-level and ($deriv-tos or $element-ins)) then <p><u>Производные</u></p> else (),
         <ul> { (
         if (not($top-level) and not($deriv-tos) and (count($element-ins) gt 3)) then
             <li>
@@ -217,7 +217,7 @@ declare function local:print-derivatives($word as element()?, $top-level as xs:b
                 else
                 let $print-derivatives := local:print-derivatives($deriv-to, false(), ($priors, $child-derivs), $pubmode) return
                 if (string($print-derivatives) != '' and not(contains(string($print-derivatives), ' compounds')) and $priors[xdb:hashcode(.) = xdb:hashcode($deriv-to)]) then 
-                    <ul><li>⇒ [see above]</li></ul>
+                    <ul><li>⇒ [см. выше]</li></ul>
                 else
                 $print-derivatives
             } </li>
@@ -240,7 +240,7 @@ declare function local:print-inflections($ref as element()?, $inflections as xs:
 };
 
 declare function local:print-examples($ref as element()?) as node()* {(
-    if ($ref/example) then text{' for example: '} else (),
+    if ($ref/example) then text{' например: '} else (),
     for $example in $ref/example
     let $example-refs := xdb:key($ref, 'ref', $example/@source)
     let $example-ref := $example-refs[1]
