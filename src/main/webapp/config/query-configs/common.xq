@@ -65,7 +65,8 @@ declare function c:print-gloss($word as element()?) as node()* {
     let $gloss := c:get-gloss($word)
     let $css := () (: c:derive-css($word) :)
     return
-        if ($gloss and $css) then (text{' “'}, <span class="{$css}">{$gloss}</span>, text{'”'})
+        if ($gloss = '[unglossed]') then text{'[толкование отсутствует]'}
+        else if ($gloss and $css) then (text{' “'}, <span class="{$css}">{$gloss}</span>, text{'”'})
         else if ($gloss) then text{concat(' “', $gloss, '”')}
         else ()
 };
@@ -326,6 +327,11 @@ declare function c:display-speech($ref as element()?) as xs:string? {
         else if (ends-with($speech, '?')) then concat(' ', $speech)
         else concat(' ', $speech, '.')
     return $display
+};
+
+declare function c:get-page-id($ref as element()?) as xs:string? {
+    let $top-word := $ref/ancestor-or-self::word[not(ancestor::word)][@page-id]
+    return $top-word/@page-id/string()
 };
 
 declare function c:is-word($ref as element()?) as xs:boolean {

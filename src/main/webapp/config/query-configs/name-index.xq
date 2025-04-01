@@ -35,7 +35,7 @@ return (
         { if ($word/@tengwar) then <span> [<b>{$word/@tengwar/string()}</b>]</span> else () }
         { c:print-speech($word) }
         { c:print-gloss($word) }
-        { if ($word/see) then (' see ', c:print-word(c:get-word($word/see), <control show-lang="y" show-link="y"/>))  else () } 
+        { if ($word/see) then (' см. ', c:print-word(c:get-word($word/see), <control show-lang="y" show-link="y"/>))  else () } 
         { if ($word/element) then 
         <span> ⇐ {c:print-word-elements($word/element, $word, $secondary-word)}</span>
         else() }

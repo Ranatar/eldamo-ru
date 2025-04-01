@@ -60,7 +60,7 @@ return (
                 contains($word/@mark, '|') or
                 contains($word/@mark, '-') or
                 contains($word/@mark, '‽') or
-                ($word/@gloss='[толкование отсутствует]' and not($word/@ngloss)) or
+                ($word/@gloss='[unglossed]' and not($word/@ngloss)) or
                 $word/@l = ('ep', 'en', 'eq', 'g')
             )
           ) then <span>⚠️</span> else () }

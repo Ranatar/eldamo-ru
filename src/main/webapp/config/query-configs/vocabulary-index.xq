@@ -50,7 +50,7 @@ let $word-list := $words
         [not(c:get-speech(.)='grammar')]
         [not(starts-with(c:get-speech(.), 'phone'))]
         [not(c:get-speech(.)='root')]
-        [not(deprecated)][not(see)][not(@gloss="[толкование отсутствует]")]
+        [not(deprecated)][not(see)][not(@gloss="[unglossed]")]
         [not(@l = ('eq', 'en', 'g', 'ep'))]
         [not(contains(@mark, '-'))][not(contains(@mark, '|'))]
 return (
@@ -74,7 +74,7 @@ return (
                 contains($word/@mark, '|') or
                 contains($word/@mark, '-') or
                 contains($word/@mark, '‽') or
-                ($word/@gloss='[толкование отсутствует]' and not($word/@ngloss)) or
+                ($word/@gloss='[unglossed]' and not($word/@ngloss)) or
                 $word/@l = ('ep', 'en', 'eq', 'g')
             )
           ) then <span>⚠️</span> else () }

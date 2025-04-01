@@ -154,7 +154,7 @@ let $uncategorized := $base-group
     [not(contains(@mark, '-'))]
     [not(@cat = /*/cats/cat-group/cat/@id or @cat = '?')]
     [not(see)]
-    [not(@gloss='[толкование отсутствует]')]
+    [not(@gloss='[unglossed]')]
 return if (count($uncategorized) = 0) then () else (
 <p><b>Слова вне категорий</b></p>,
 <dl> {

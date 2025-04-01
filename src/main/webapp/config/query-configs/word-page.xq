@@ -544,7 +544,7 @@ if (xdb:hashcode($neo-lang-word) != xdb:hashcode($word)) then (
     { let $deprecated := $word/deprecated | c:get-word($word/see)/deprecated return
       if (
         $deprecated or
-        ($word/@gloss='[толкование отсутствует]' and not($word/@ngloss)) or
+        ($word/@gloss='[unglossed]' and not($word/@ngloss)) or
         contains($word/@mark, '-') or
         contains($word/@mark, '|') or
         contains($word/@mark, '‽') or
@@ -816,7 +816,7 @@ let $non-variation-refs := $base-variation-refs[local:is-match(@v, $word/@v)]
 return
 if ($variation-refs or $non-variation-refs[@l] or ($base-variation-refs and $valid-refs[inflect])) then (
 <p><u>Вариантные формы</u> {if ($pubmode = 'false' and $word/word/see)
-then concat(' [also ', string-join($word/word[see]/@v, ', '), ']')
+then concat(' [также ', string-join($word/word[see]/@v, ', '), ']')
 else ()}</p>,
 <ul> { (
     if (not($non-variation-refs)) then () else
@@ -995,7 +995,7 @@ let $related-print := (
 )
 return
 if ($related-print/string() != '') then (
-    <p><u>Смежные статьи</u></p>,
+    <p><u>Связи</u></p>,
     $related-print
 ) else (),
 
