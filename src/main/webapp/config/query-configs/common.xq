@@ -64,10 +64,14 @@ declare function c:print-neo-gloss($word as element()?) as node()* {
 declare function c:print-gloss($word as element()?) as node()* {
     let $gloss := c:get-gloss($word)
     let $css := () (: c:derive-css($word) :)
+    let $display-gloss := 
+        if ($gloss = '[unglossed]') then 
+            '[толкование отсутствует]'
+        else 
+            $gloss
     return
-        if ($gloss = '[unglossed]') then text{'[толкование отсутствует]'}
-        else if ($gloss and $css) then (text{' “'}, <span class="{$css}">{$gloss}</span>, text{'”'})
-        else if ($gloss) then text{concat(' “', $gloss, '”')}
+        if ($display-gloss and $css) then (text{' "'}, <span class="{$css}">{$display-gloss}</span>, text{'"'})
+        else if ($display-gloss) then text{concat(' "', $display-gloss, '"')}
         else ()
 };
 
@@ -280,53 +284,42 @@ declare function c:get-speech($ref as element()?) as xs:string? {
     $ref/ancestor-or-self::*[@speech][1]/@speech/string()
 };
 
-declare function c:print-speech($ref as element()?) as element()? {
-    <i>{c:display-speech($ref)}</i>
-};
-
 declare function c:display-speech($ref as element()?) as xs:string? {
     let $speech := c:get-speech($ref)
-    let $display :=
-(:        if (contains($speech, ' ')) then          :)
-(:           let $a := tokenize($speech, '\s')      :)
-(:            let $r := string-join($a, '. и ')     :)
-(:            return concat(' ', $r, '.')           :)
-(:        else  if ($speech='masc-name') then ' м.' :)
-        if ($speech='masc-name') then ' м.'
-        else if ($speech='fem-name') then ' ж.'
-        else if ($speech='place-name') then ' геогр.'
-        else if ($speech='collective-name') then ' собир.'
-        else if ($speech='collective-noun') then ' собир.'
-        else if ($speech='proper-name') then ' им.'
-        else if ($speech='cardinal') then ' к. числ'
-        else if ($speech='ordinal') then ' п. числ.'
-        else if ($speech='vb') then ' гл.'
-        else if ($speech='n') then ' сущ.'
-        else if ($speech='adj') then ' прил.'
-        else if ($speech='adv') then ' нар.'
-        else if ($speech='pron') then ' мест.'
-        else if ($speech='conj') then ' c.'
-        else if ($speech='interj') then ' межд.'
-        else if ($speech='suf') then ' суф.'
-        else if ($speech='pref') then ' прист.'
-        else if ($speech='prep') then ' пред.'
-        else if ($speech='root') then ' кор.'
-        else if ($speech='adv adj') then 'нар. и прил.'
-        else if ($speech='adj adv') then 'прил. и нар.'
-        else if ($speech='adj n') then 'прил. и сущ.'
-        else if ($speech='adv n') then 'нар. и сущ.'
-        else if ($speech='n adj') then 'сущ. и прил.'
-        else if ($speech='prep adv') then 'пред. и нар.'
-        else if ($speech='conj adv') then 'с. и нар.'
-        else if ($speech='phrase') then ''
-        else if ($speech='grammar') then ''
-        else if ($speech='text') then ''
-        else if ($speech='phonetic-group') then ''
-        else if ($speech='phoneme') then ''
-        else if ($speech='phonetic-rule') then ''
-        else if (ends-with($speech, '?')) then concat(' ', $speech)
-        else concat(' ', $speech, '.')
-    return $display
+    return if (empty($speech)) then ()
+    else if (contains($speech, ' ')) then
+        let $tokens := tokenize($speech, '\s+')
+        let $translated := 
+            for $token in $tokens
+            return c:translate-speech-term($token)
+        return concat(' ', string-join($translated, '. и '), '.')
+    else concat(' ', c:translate-speech-term($speech), '.')
+};
+
+declare function c:translate-speech-term($term as xs:string) as xs:string {
+    let $term := replace($term, '\?$', '') (: Удаляем знак вопроса в конце, если есть :)
+    let $result :=
+        if ($term = 'masc-name') then 'м'
+        else if ($term = 'fem-name') then 'ж'
+        else if ($term = 'place-name') then 'геогр'
+        else if ($term = 'proper-name') then 'им'
+        else if ($term = 'cardinal') then 'к. числ'
+        else if ($term = 'adv') then 'нареч'
+        else if ($term = 'adj') then 'прил'
+        else if ($term = 'n') then 'сущ'
+        else if ($term = 'v') then 'гл'
+        else if ($term = 'pron') then 'мест'
+        else if ($term = 'prep') then 'предл'
+        else if ($term = 'conj') then 'союз'
+        else if ($term = 'interj') then 'межд'
+        else if ($term = 'num') then 'числ'
+        else if ($term = 'part') then 'част'
+        else if ($term = 'prefix') then 'приставка'
+        else if ($term = 'suffix') then 'суффикс'
+        else $term (: Если нет соответствия, оставляем как есть :)
+    return 
+        if (ends-with($term, '?')) then concat($result, '?')
+        else $result
 };
 
 declare function c:get-page-id($ref as element()?) as xs:string? {
@@ -542,7 +535,7 @@ declare function c:alt-lang($word as element()) as xs:string {
 
 (: inflect :)
 
-declare function c:print-inflect-form($form as xs:string) as xs:string {
+(: declare function c:print-inflect-form($form as xs:string) as xs:string {
     if ($form='plural')
         then 'pl.'
     else if ($form='class-plural')
@@ -566,4 +559,81 @@ declare function c:print-inflect-forms($forms as xs:string) as xs:string {
         for $form in tokenize($forms, ' ')
         return c:print-inflect-form($form)
     return string-join($form-list, ' ')
+}; :)
+
+declare function c:grammar-translations() as map(*) {
+    map {
+        (: Отдельные термины :)
+        "plural": "мн.ч.",
+        "class-plural": "класс мн.ч.",
+        "imperative": "повел.",
+        "infinitive": "инф.",
+        "present": "наст.вр.",
+        "aorist": "аорист",
+        "pl": "мн.ч.",
+        "1st": "1-е",
+        "2nd": "2-е",
+        "3rd": "3-е",
+        "excl": "искл.",
+        "incl": "вкл.",
+        "strong": "сильн.",
+        "weak": "слаб.",
+        "perfect": "перф.",
+        "soft": "мягк.",
+        "mutation": "мутация",
+        "nasal": "назал.",
+        "fortification": "усиление",
+        "infixed": "инфикс.",
+        "verb": "глагол",
+        "causative": "причинительный",
+        
+        (: Составные термины :)
+        "a-verb": "глагол на -a",
+        "i-verb": "глагол на -i",
+        "a-mutation": "мутация на -a",
+        "1st-pl": "1-е мн.ч.",
+        "2nd-pl": "2-е мн.ч.",
+        "3rd-pl": "3-е мн.ч.",
+        "1st-pl-excl": "1-е мн.ч. искл.",
+        "1st-pl-incl": "1-е мн.ч. вкл."
+        (: Здесь можно добавить другие составные термины :)
+    }
+};
+
+(: Функция для перевода грамматического термина или группы :)
+declare function c:translate-grammar-term($term as xs:string) as xs:string {
+    let $translations := c:grammar-translations()
+    return if (map:contains($translations, $term)) then 
+              map:get($translations, $term) 
+           else 
+              $term
+};
+
+(: Функция для обработки группы с тире :)
+declare function c:process-grammar-group($group as xs:string) as xs:string {
+    (: Сначала проверяем, есть ли перевод для всей группы :)
+    let $full-translation := c:translate-grammar-term($group)
+    return 
+        if ($full-translation ne $group) then
+            (: Если есть прямой перевод для всей группы, используем его :)
+            $full-translation
+        else
+            (: Иначе разбиваем на части и переводим каждую часть :)
+            let $parts := tokenize($group, "-")
+            let $translated-parts :=
+                for $part at $pos in $parts
+                return c:translate-grammar-term($part)
+            return string-join($translated-parts, "-")
+};
+
+(: Основная функция для обработки значений полей form или variant :)
+declare function c:print-inflect-value($value as xs:string?) as xs:string? {
+    if (not($value)) then 
+        ()
+    else
+        let $groups := tokenize($value, " ")
+        let $processed-groups :=
+            for $group in $groups
+            return c:process-grammar-group($group)
+        return string-join($processed-groups, " ")
 };

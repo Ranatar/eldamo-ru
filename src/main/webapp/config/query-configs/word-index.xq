@@ -100,7 +100,7 @@ return (
           concat(' [',
             if ($word/@created) then concat('предложил(а) ', $word/@created/string()) else '',
             if ($word/@created and $word/@vetted) then ', ' else '',
-            if ($word/@vetted) then concat('утвердил(а) ', $word/@vetted/string()) else '',
+            if ($word/@vetted) then concat('проверено по ', $word/@vetted/string()) else '',
           ']') }
         { if ($word/see and not($neo-lang and $deprecated))
           then (' см. ', c:print-word(c:get-word($word/see),

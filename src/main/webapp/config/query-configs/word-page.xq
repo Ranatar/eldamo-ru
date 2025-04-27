@@ -600,7 +600,7 @@ if (xdb:hashcode($neo-lang-word) != xdb:hashcode($word)) then (
       concat(' [',
         if ($word/@created) then concat('предложил(а) ', $word/@created/string()) else '',
         if ($word/@created and $word/@vetted) then ', ' else '',
-        if ($word/@vetted) then concat('утвердил(а) ', $word/@vetted/string()) else '',
+        if ($word/@vetted) then concat('проверено по ', $word/@vetted/string()) else '',
       ']') }
     {let $rule := if ($word/@rule) then $word else $word/rule return
     if ($rule) then concat('; [', $rule/@from, '] &gt; [', $rule/@rule, ']') else ()}
@@ -1104,7 +1104,7 @@ let $unmatched-refs := $element-refs[c:get-ref(.)/not(xdb:contains($element-word
 let $glosses := ($elements/c:get-word(.)/c:get-gloss(.), $unmatched-refs/c:get-ref(.)/c:get-gloss(.))
 let $has-forms := $word/element[@form] | $unmatched-refs/c:get-ref(.)/inflect/@form
 return (
-    if ($elements or $unmatched-refs) then <p><u>Elements</u></p> else (),
+    if ($elements or $unmatched-refs) then <p><u>Состав</u></p> else (),
     if (not($elements or $unmatched-refs)) then () else
     <table> {(
         let $has-references := $element-refs/c:get-ref(.)

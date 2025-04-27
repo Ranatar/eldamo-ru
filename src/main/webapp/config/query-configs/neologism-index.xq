@@ -170,7 +170,7 @@ return (
             <span> { concat(
             if ($word/@created) then concat('предложил(а) ', $word/@created/string()) else '',
             if ($word/@created and $word/@vetted) then ', ' else '',
-            if ($word/@vetted) then concat('утвердил(а) ', $word/@vetted/string()) else '')
+            if ($word/@vetted) then concat('проверено по ', $word/@vetted/string()) else '')
             } </span>
           , ']') }
         { if (contains($word/@mark, "^")) then
